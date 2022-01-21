@@ -134,8 +134,8 @@ func (m *My) Select(q string, v ...interface{}) (Rowset, error) {
     return rowset, nil
 }
 
-func (m *My) InsertOnce(sql string) (int64, int64, error) {
-    res, err := m.dbh.Exec(sql)
+func (m *My) Exec(sql string, v ...interface{}) (int64, int64, error) {
+    res, err := m.dbh.Exec(sql, v...)
     if err != nil {
         return zero64, zero64, err
     }
@@ -153,6 +153,7 @@ func (m *My) InsertOnce(sql string) (int64, int64, error) {
     return rowsAffected, lastinsertid, nil
 }
 
+func (m *My) InsertOnce(sql string) (int64, int64, error) { return m.Exec(sql) }
 func (m *My) Insert(table string, cols []string, vals ...[]interface{}) (int64, int64, error) {
     var values []string
     for row:=0; row<len(vals); row++ {
