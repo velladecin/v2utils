@@ -67,21 +67,10 @@ func (l *Logger) GetLogUtilities() (LogDebugEntry, LogInfoEntry, LogWarnEntry, L
     return l.getDebug(), l.getInfo(), l.getWarn(), l.getCrit()
 }
 
-func (l *Logger) getDebug() LogDebugEntry {
-    return func(s string) { l.Debugx.Print(s) }
-}
-
-func (l *Logger) getInfo() LogInfoEntry {
-    return func(s string) { l.Infox.Print(s) }
-}
-
-func (l *Logger) getWarn() LogWarnEntry {
-    return func(s string) { l.Warnx.Print(s) }
-}
-
-func (l *Logger) getCrit() LogCritEntry {
-    return func(s string) { l.Critx.Print(s) }
-}
+func (l *Logger) getDebug() LogDebugEntry { return func(s string) {l.Debugx.Output(2, s)} }
+func (l *Logger) getInfo() LogInfoEntry { return func(s string) {l.Infox.Output(2, s)} }
+func (l *Logger) getWarn() LogWarnEntry { return func(s string) {l.Warnx.Output(2, s)} }
+func (l *Logger) getCrit() LogCritEntry { return func(s string) {l.Critx.Output(2, s)} }
 
 
 //
