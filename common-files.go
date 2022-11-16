@@ -8,6 +8,7 @@ import (
     "syscall"
 )
 
+// test
 const (
     T_START = iota
     T_CUR
